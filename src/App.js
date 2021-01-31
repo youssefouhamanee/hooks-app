@@ -7,14 +7,18 @@ import Button from "./components/Button";
 import Input from "./components/Input";
 import Contents from "./components/Contents";
 import ModalRemoveConfirmation from "./components/ModalRemoveConfirmation";
-import { addPersonFn, fetchPersonFn, removePersonFn } from "./redux/actions";
+import {
+	addPersonFn,
+	fetchPersonFn,
+	removePersonFn,
+	setNamePerson
+} from "./redux/actions";
 import { selectorPersons } from "./redux/selector";
 import { GET_USERS_LIST } from "end-points";
 
 function App() {
-	const personsSelector = useSelector((state) => selectorPersons(state));
-	const persons = personsSelector?.personsList;
-	const [namePerson, setNamePerson] = useState("");
+	const { persons, namePerson } = useSelector(selectorPersons);
+
 	const [removePersonId, setRemovePersonId] = useState("");
 	const [errors, setErrors] = useState("");
 	const [displayModalRemove, setDisplayModalRemove] = useState(false);
@@ -31,7 +35,7 @@ function App() {
 	}, []);
 
 	const handlePersons = (e) => {
-		return setNamePerson(e.target.value);
+		return dispatch(setNamePerson(e.target.value));
 	};
 	const addPersons = () => {
 		if (namePerson !== "") {
@@ -41,10 +45,9 @@ function App() {
 		} else {
 			setErrors("please this field not should be empty!");
 		}
-		setNamePerson("");
+		dispatch(setNamePerson(""));
 	};
 	const removePerson = () => {
-		console.log(removePersonId);
 		dispatch(removePersonFn(removePersonId));
 		setDisplayModalRemove(false);
 	};
@@ -71,7 +74,6 @@ function App() {
 					onAddPersons={handlePersons}
 					error={errors}
 				/>
-
 				<Button addPersons={addPersons} />
 			</AppForm>
 			<AppContent>

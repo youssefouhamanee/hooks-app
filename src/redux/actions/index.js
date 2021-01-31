@@ -15,9 +15,15 @@ export const fetchPersonFn = (data) => {
 };
 
 export const removePersonFn = (data) => {
-	console.log(data);
 	return {
 		type: types.REMOVE_PERSON,
 		payload: data
+	};
+};
+
+export const setNamePerson = (name) => {
+	return {
+		type: types.GET_PERSON_NAME,
+		payload: name
 	};
 };

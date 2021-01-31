@@ -68,3 +68,10 @@ export const ContentModal = styled.div`
 		}
 	}
 `;
+export const ContentWrapper = styled.div`
+	ul {
+		li {
+			list-style: none;
+		}
+	}
+`;
