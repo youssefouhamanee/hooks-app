@@ -14,7 +14,7 @@ import {
 	setNamePerson
 } from "./redux/actions";
 import { selectorPersons } from "./redux/selector";
-import { GET_USERS_LIST } from "end-points";
+import { GET_TODOS_LIST } from "end-points";
 
 function App() {
 	const { persons, namePerson } = useSelector(selectorPersons);
@@ -27,8 +27,8 @@ function App() {
 	const dispatch = useDispatch();
 	const fetchPersons = () => {
 		return axios
-			.get(GET_USERS_LIST)
-			.then((res) => dispatch(fetchPersonFn(res.data)));
+			.get(GET_TODOS_LIST)
+			.then((res) => dispatch(fetchPersonFn(res.data.slice(0, 10))));
 	};
 	useEffect(() => {
 		fetchPersons();

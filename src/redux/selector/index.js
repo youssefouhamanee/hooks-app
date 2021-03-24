@@ -9,7 +9,13 @@ export const selectorPersons = createSelector(
 	(personsListState, nameState) => {
 		return {
 			persons: personsListState?.personsList,
-			namePerson: nameState?.namePerson
+			namePerson: nameState?.namePerson,
+			taskCompleted: personsListState?.personsList.filter((p) => {
+				return p.completed;
+			}).length,
+			taskUncompleted: personsListState?.personsList.filter((p) => {
+				return !p.completed;
+			}).length
 		};
 	}
 );

@@ -27,3 +27,11 @@ export const setNamePerson = (name) => {
 		payload: name
 	};
 };
+export const getCompletedTodo = (id) => {
+	return {
+		type: types.GET_TODO_COMPLETED,
+		payload: {
+			id
+		}
+	};
+};

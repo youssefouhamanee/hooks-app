@@ -1,7 +1,9 @@
 import * as types from "../actions/types";
 
 const initialState = {
-	personsList: []
+	personsList: [],
+	personSelected: {},
+	selectedId: ""
 };
 
 export default function appReducer(state = initialState, action) {
@@ -18,14 +20,26 @@ export default function appReducer(state = initialState, action) {
 				personsList: action.payload
 			};
 		case types.REMOVE_PERSON:
-			const newListPerson = state.personsList.filter((p) => {
-				return p.id !== action.payload;
-			});
+			// const newListPerson =
 			return {
 				...state,
-				personsList: newListPerson
+				personsList: state.personsList.filter((p) => {
+					return p.id !== action.payload;
+				})
 			};
-
+		case types.GET_TODO_COMPLETED:
+			return {
+				...state,
+				personsList: state.personsList.map((p) => {
+					if (p.id === action.payload.id) {
+						return {
+							...p,
+							completed: !p.completed
+						};
+					}
+					return p;
+				})
+			};
 		default:
 			return state;
 	}
