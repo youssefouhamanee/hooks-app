@@ -13,7 +13,7 @@ export const AppContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	width: 25%;
+	width: 100%;
 	ul li span.icon-close {
 		color: ${colors.dangerColor};
 		cursor: pointer;

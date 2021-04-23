@@ -1,3 +1,37 @@
 import * as types from "./types";
 
-console.log(types);
+export const addPersonFn = (data) => {
+	return {
+		type: types.ADD_PERSON,
+		payload: data
+	};
+};
+
+export const fetchPersonFn = (data) => {
+	return {
+		type: types.FETCH_PERSONS,
+		payload: data
+	};
+};
+
+export const removePersonFn = (data) => {
+	return {
+		type: types.REMOVE_PERSON,
+		payload: data
+	};
+};
+
+export const setNamePerson = (name) => {
+	return {
+		type: types.GET_PERSON_NAME,
+		payload: name
+	};
+};
+export const getCompletedTodo = (id) => {
+	return {
+		type: types.GET_TODO_COMPLETED,
+		payload: {
+			id
+		}
+	};
+};
